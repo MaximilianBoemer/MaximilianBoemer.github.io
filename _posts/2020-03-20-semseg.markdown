@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Review of selected work in Semantic Segmentation"
+date:   2020-03-19 23:02:44 +0100
+categories: jekyll update
+---
+Talk about [ERFNet] and other stuff
+
+[ERFNet]: http://www.robesafe.uah.es/personal/roberto.arroyo/docs/Romera17tits.pdf
