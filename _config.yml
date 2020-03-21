@@ -39,7 +39,9 @@ plugins:
   - kramdown
   - rouge
   
-
+sass:
+  style: compressed
+  source_dir: _sass
 
 # Exclude from processing.
 # The following items will not be processed, by default.
