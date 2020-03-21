@@ -30,7 +30,8 @@ paginate: 5
 paginate_path: "/blog/page:num"
 
 # Build settings
-theme: bulma-clean-theme
+#theme: bulma-clean-theme
+remote_theme: chrisrhymes/bulma-clean-theme
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
