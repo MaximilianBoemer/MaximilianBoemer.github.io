@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Jotter" />
 <script type="application/ld+json">
-{"@type":"WebSite","url":"http://localhost:4000/","headline":"Jotter","name":"Jotter","description":"I write notes about various things I learn about, hoping to organize my thoughts and share them with others.","@context":"https://schema.org"}</script>
+{"@type":"WebSite","headline":"Jotter","url":"http://localhost:4000/","name":"Jotter","description":"I write notes about various things I learn about, hoping to organize my thoughts and share them with others.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <!-- head scripts --></head>
 
@@ -100,18 +100,19 @@
                 <div class="hero-body">
                     <div class="columns">
                         <div class="column is-4">
-                            <img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png" alt="Review of selected work in Semantic Segmentation" />
+                            <img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png" alt="Dense predictions: Review of selected publications in semantic and instance segmentation" />
                         </div>
                         <div class="column is-8">
                             <div class="has-text-centered">
                                 <a href="/review/2020/03/19/semseg.html">
-                                    <h3 class="title is-4">Review of selected work in Semantic Segmentation</h3>
+                                    <h3 class="title is-4">Dense predictions: Review of selected publications in semantic and instance segmentation</h3>
                                 </a>
                                 <p class="subtitle is-6">Published: Mar 19, 2020</p>
                                 <div class="content">
-                                    <p><p>Semantic segmentation
-material: https://arxiv.org/pdf/1912.10230.pdf https://link.springer.com/content/pdf/10.1007/s13735-017-0141-z.pdf
-https://arxiv.org/abs/1704.06857</p>
+                                    <p><h2 id="semantic-segmentation">Semantic Segmentation</h2>
+<div style="text-align: justify">
+Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post.
+</div>
 
 </p>
                                 </div>

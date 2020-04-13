@@ -4,20 +4,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Review of selected work in Semantic Segmentation - Jotter</title>
+    <title>Dense predictions: Review of selected publications in semantic and instance segmentation - Jotter</title>
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" type="image/png"
            href="/favicon.png" 
     />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Review of selected work in Semantic Segmentation | Jotter</title>
+<title>Dense predictions: Review of selected publications in semantic and instance segmentation | Jotter</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Review of selected work in Semantic Segmentation" />
+<meta property="og:title" content="Dense predictions: Review of selected publications in semantic and instance segmentation" />
 <meta name="author" content="Maximilian Bömer" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="There are many ways to make a website, but what about static site generators" />
-<meta property="og:description" content="There are many ways to make a website, but what about static site generators" />
+<meta name="description" content="Semantic Segmentation Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post." />
+<meta property="og:description" content="Semantic Segmentation Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post." />
 <link rel="canonical" href="http://localhost:4000/review/2020/03/19/semseg.html" />
 <meta property="og:url" content="http://localhost:4000/review/2020/03/19/semseg.html" />
 <meta property="og:site_name" content="Jotter" />
@@ -25,7 +25,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-03-19T23:02:44+01:00" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png","url":"http://localhost:4000/review/2020/03/19/semseg.html","headline":"Review of selected work in Semantic Segmentation","dateModified":"2020-03-19T23:02:44+01:00","datePublished":"2020-03-19T23:02:44+01:00","author":{"@type":"Person","name":"Maximilian Bömer"},"description":"There are many ways to make a website, but what about static site generators","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/review/2020/03/19/semseg.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Dense predictions: Review of selected publications in semantic and instance segmentation","dateModified":"2020-03-19T23:02:44+01:00","datePublished":"2020-03-19T23:02:44+01:00","image":"https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png","url":"http://localhost:4000/review/2020/03/19/semseg.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/review/2020/03/19/semseg.html"},"author":{"@type":"Person","name":"Maximilian Bömer"},"description":"Semantic Segmentation Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <!-- head scripts --></head>
 
@@ -71,7 +71,7 @@
         <section class="hero  is-medium  is-bold is-primary"  style="background: url('https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png') no-repeat center center; background-size: cover;" >
     <div class="hero-body">
         <div class="container">
-            <p class="title is-2">Review of selected work in Semantic Segmentation</p>
+            <p class="title is-2">Dense predictions: Review of selected publications in semantic and instance segmentation</p>
             <p class="subtitle is-3"></p>
             
         </div>
@@ -85,7 +85,7 @@
         <div class="container">
             <div class="columns">
                 
-                <div class="column is-12">
+                <div class="column is-8">
                     
                     
                     
@@ -93,44 +93,220 @@
 
     <p>Published: Mar 19, 2020 by Maximilian Bömer</p>
 
-    <p>Semantic segmentation
-material: https://arxiv.org/pdf/1912.10230.pdf https://link.springer.com/content/pdf/10.1007/s13735-017-0141-z.pdf
-https://arxiv.org/abs/1704.06857</p>
+    <h2 id="semantic-segmentation">Semantic Segmentation</h2>
+<div style="text-align: justify">
+Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post.
+</div>
+<!--more-->
+<figure align="center">
+  <img img="" src="/assets/semseg_img/semseg.png" alt="SemSeg" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 1: Example for an input output pair in semantic segmentation [1].</figcaption>
+</figure>
+<h3 id="pre-deep-learning-era">Pre Deep Learning Era</h3>
+<div style="text-align: justify">
+In the time before CNNs were directly providing dense category-level pixel labels, a variety of different approaches existed. These techniques were using different kind of inputs like the pixel color, histogram of oriented gradients, SIFT, SURF or other forms of features. In this section I want to focus on <b>Conditional Random Fields</b> based techniques, which are still used today and now mostly get applied as a postprocessing step to refine deep learning based results.
 
-<p>overview of techniques</p>
-<ul>
-  <li>FCN</li>
-  <li>ERFNet</li>
-  <li>Fast-SCNN</li>
-  <li>U-Net</li>
-  <li>Dilated</li>
-  <li>Deeplab</li>
-  <li>PSPNet</li>
-</ul>
+Conditional random fields are a variant of Markov networks, which are designed to solve task-specific predictions. This are tasks, where we have a set of input variables X (here: image/super pixels) and a set of target variables, that we're trying to predict Y (here: class for every pixel). The problem is defined as a classification of an element, which depends on the labels of the neighboring elements of the observation. Therefore the complex dependencies between the features can be ignored and instead of modeling the joint probability distribution <i>p(y,x)</i>, the solution to this problem can be defined as a discriminative approach, where we directly model the conditional distribution <i>p(y|x)</i>.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/formula_CRF.png" alt="fcn_architecture" style="zoom:75%;" class="center" />
+  <img img="" src="/assets/semseg_img/CRF_2.png" alt="fcn_architecture" style="zoom:50%;" class="center" />
+  <img img="" src="/assets/semseg_img/crf_semseg.png" alt="fcn_architecture" style="zoom:80%;" class="center" />
+  <figcaption>Fig. 2: Semantic segmentation using superpixels and CRFs [1].</figcaption>
+</figure>
+<div style="text-align: justify">
+The semantic segmentation process is divided into different subtasks. Normally the image is first clustered into superpixels using features like appearance similarity, spatial distance and contour information to improve computational efficiency and robustness. The second step is then to evaluate the likelihood of a superpixel belonging to a given object class. Therefore models like Adaboost or random forest classifiers, SVMs or CNNs are used. After that a conditional random field (CRF) is applied to model the dependencies between the class probabilities of the different superpixels.
 
-<p>Instance segmentation</p>
-<ul>
-  <li>Mask R-CNN</li>
-</ul>
+The final predictions can then be calculated by estimating the Maximum Likelihood parameters (see Figure 2). The first term represents the impact of the local evidence around <i>x_i</i> to label <i>y_i</i>, while the second one encourages neighboring labels to be similar, in a manner that depends on the difference in pixel intensity and therefore on the choice of <i>g</i>. <i>Beta</i>, <i>theta</i> and <i>lambda</i> are the parameters of the model, which are learned to optimize the performance based on a training set.
+</div>
+<h3 id="fcn---fully-convolutional-networks-for-semantic-segmentation">FCN - Fully Convolutional Networks for Semantic Segmentation</h3>
+<div style="text-align: justify">
+Deep learning approaches directly map the input to the dense output masks and the network parameters are optimized with a pixel-wise cross entropy loss. The general semantic segmentation architecture is an encoder-decoder network. The encoder extracts the important information of the raw RGB data, while the task of the decoder is to project the learned features onto the pixel space to get a dense classification.
 
-<p>Point cloud segmentation
-https://arxiv.org/abs/1908.08854</p>
-<ul>
-  <li>SqueezeSegV2</li>
-</ul>
+Jonathan Long et al. [2] were the first, who applied the idea of fully convolutional networks to semantic segmentation. The main idea is here the "<b>convolutionalization</b>", where all fully connected layers get replaced by the same number of 1x1 convolutional filters. The resulting networks are therefore just consisting of convolutional, pooling and upsampling layers and can take images of arbitrary size as input plus are end-to-end trainable using the per-pixel softmax loss.  This idea enables additionally the use of pre-trained encoders from large-scale classification tasks like ImageNet (e.g. VGG-16) .
+To mitigate the problem of losing local context in the created output maps, <b>skip connections</b> were introduced (see Fig. 3). These fuse the information from different feature maps of the encoder by summation and enable a synthesis of low-level information as well as global context.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/fcn_architecture.png" alt="fcn_architecture" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 3: Architectures of FCN-32, FCN-16 and FCN-8 using different form of skip connections to increase precision by the use of local information [2].</figcaption>
+</figure>
 
-<p>Outlook
-https://arxiv.org/abs/1806.06172</p>
-<ul>
-  <li>Video for refinement</li>
-</ul>
+<h3 id="u-net">U-Net</h3>
+<div style="text-align: justify">
+Bio-medical applications require high precision. U-Net, which was published by Ronneberger et al. [3] can be seen as an extension of FCN to work with a small amount of training samples by at the same time having high precision. The main differences are summarized below.
 
+As visible in Fig. 4 U-Net has <b>multiple upsampling layers with learnable weight filters</b>, which differs from the original FCN implementation, which only consists of just one decoder layer with bilinear interpolation. The increased depth and the use of a high number of learnable feature channels allows to propagate more context information to the higher resolution layers and results in a higher precision and mitigates the limitation of local accuracy caused by simple bilinear interpolation.
+
+The second advantage of the symmetric architecture is the possibility to transfer information from each encoding step to the respective decoding stage. In contrast to FCN, <b>skip connections use concatenation of feature maps instead of summation</b>. This helps aggregating information at multiple scales and fusing it in a learned way by the following convolutions. The ability to learn from a small number of examples is due to the extensive data augmentations, which get used. Besides shift, rotation and illumination changes, the authors use random elastic deformations for a robust training process.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/unet_architecture.jpg" alt="dilated_conv" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 4: Architecture of U-Net [3]</figcaption>
+</figure>
+
+<h3 id="multi-scale-context-aggregation-by-dilated-convolutions">Multi-scale context aggregation by dilated convolutions</h3>
+<div style="text-align: justify">
+Semantic segmentation is a difficult task. The challenge is to reach on the one side pixel-level accuracy and reason at the same time about the global context. Fisher Yu from Princeton University and Vladlen Koltun from Intel Labs used a convolutional network module that combines both: <b>Dilated convolutions</b> [4]. The idea of the approach is to not rely on pooling or subsampling operations and therefore prevents the explicit loss of information and hence reduced resolution, while at the same time expanding the receptive field of view of the model.
+
+The dilated convolution operator (see Fig. 5), also known as atrous convolution and known since the 80s, applies the same filter with different dilation factors l. The used <b>basic context module</b> consists of seven 3x3 convolutions with different dilation factors, where each filter is applied to all channels of the input tensor, and afterwards truncated point-wise.
+</div>
+<figure align="center">
+    <img img="" src="/assets/semseg_img/formula_dilated_conv.png" alt="standard_conv" style="zoom:80%;" class="center" />
+</figure>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/standard_conv.gif" alt="standard_conv" style="zoom:50%;" class="center" />
+  <img img="" src="/assets/semseg_img/dilated_conv.gif" alt="dilated_conv" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 5: Standard (l=1) vs. dilated convolution (l=2).</figcaption>
+</figure>
+<div style="text-align: justify">
+Besides the new technique to aggregate context, Yu et al. also presented a novel <b>front end module</b>. Like in the FCN a VGG-16 network gets adapted for dense predictions (see Fig. 2). Instead of using pooling and striding layers, which were formerly introduced for reducing the spatial dimensions for classification tasks, these operations get replaced by dilated convolutions. This simplified model showed more accurate results than pior architectures and emphasizes the argument of the authors, that dedicated architectures for dense prediction lead to increased performance.
+</div>
+<h3 id="deeplab----semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs">Deeplab -  Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs</h3>
+<div style="text-align: justify">
+Chen et al. [5] developed in their first Deeplab paper three interesting techniques, which reached a new state-of-art at the PASCAL VOC-2012 [8] semantic image segmentation challenge. One of the ideas is the use <b>atrous convolutions</b>, which is a synonym for dilated convolutions, and were described above.
+
+The second new technique is the <b>atrous spatial pyramid pooling</b> module (see Fig. 6). It uses multiple parallel atrous convolutions with different sampling rates. The features are extracted for each of the sampling rates and are then post-processed in separate branches and finally fused together. This module helps by explicitly accounting for object scale and improves the ability to handle both large and small objects.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/atrous_pp.png" alt="standard_conv" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 6: Atrous spatial pyramid pooling module</figcaption>
+</figure>
+
+<div style="text-align: justify">
+A general trade-off for deep CNNs is that the stacking of pooling and convolutional layers does improve the aggregation of global context, which is important for the scene classification, but also has a negative effect on the local accuracy and therefore only yields smooth responses (see Fig. 7). <b>Fully connected Conditional Random Fields</b> were therefore introduced as a postprocessing step to recover accurate boundaries. The energy function incorporates on the one hand the unary potential, which depends on the assignment probability at pixel <i>i</i>, and on the other side also the pairwise potential. Here nodes with distinct labels are penalized based on their pixel position and RGB color.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/energy_function_CRF.png" alt="standard_conv" style="zoom:50%;" class="center" />
+  <img img="" src="/assets/semseg_img/CRF_iterations.png" alt="standard_conv" style="zoom:80%;" class="center" />
+  <figcaption>Fig. 7: CNN output and belief maps after mean field iterations.</figcaption>
+</figure>
+
+<div style="text-align: justify">
+In the later versions of Deeplab different ideas got added. Atrous depth-wise separable convolutions were introduced to increase computational efficiency and additionally slightly improved the performance. In Deeplabv3+ all max pooling operations got replaced by depth-wise separable convolutions and additionally low-level features were used to recover local accuracy.
+</div>
+<h3 id="pspnet---pyramid-scene-parsing-network">PSPNet - Pyramid Scene Parsing Network</h3>
+<div style="text-align: justify">
+To associate each input pixel with the correct class, global information can be helpful. If you see for example an object on a lake and you can not decide by its appearance, if it is a ship or a car. The context helps as cars are rarely swimming. PSPNet [6] addresses this issue and therefore introduced the <b>pyramid pooling module</b>. 
+
+The pyramid pooling module combines in the original paper feature maps from four different scales. Coarse global as well as regional information get extracted, the dimensions reduced by 1x1 convolutions and afterwards upsampled to the spatial resolution of the input feature map. In the end the different representations as well as the input tensor get concatenated and are then used as a base for the decoder, which creates the final prediction. This architectural prior helps to combine low- as well as high-level information.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/psp_module.png" alt="fcn_architecture" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 8: Pyramid parsing module exploiting different sub-region representations [6].</figcaption>
+</figure>
+
+<h3 id="erfnet---efficient-residual-factorized-convnet-for-real-time-semantic-segmentation">ERFNet - Efficient Residual Factorized ConvNet for Real-time Semantic Segmentation</h3>
+<div style="text-align: justify">
+Robotic applications like autonomous driving have challenging real time requirements. Eduardo Romera et al. [7] addressed this problem in their work and tried to find a good compromise between accuracy and computational efficiency (83 FPS on a single Titan X). Their key idea is the use of <b>factorized residual layers</b>.
+
+The original ResNet paper is proposing the non-bottleneck design (a) with two 3x3 convolutions and the bottleneck design (b) with one 3x3 convolution framed by 1x1 convolutions (see Fig. 9). The bottleneck version is computationally more efficient as the size of the input tensor can be reduced by the cheap 1x1 convolutions and the computationally expensive 3x3 convolutions have to be applied to a smaller tensor. This increases efficiency but also has negative effects on the accuracy.
+
+Romera et al. propose a new design based on spatial separable convolutions. They decompose the 3x3 kernels from the original non-bottleneck design by two 1-dimensional convolutions 1x3 and 3x1. The different number of weights for a single input channel and one filter shows the advantage:  a) 2 * 3 * 3 = 18 b) 4 * 3 * 1 = 12. This also translates in a reduced number of multiplications and therefore more generally speaking in lower computational cost. Additionally, the 1D convs remove redundancies (shared for each 2D combination) and also the additional non-linearities can improve the training success.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/non_bottleneck_1d.png" alt="non_bottleneck_1d" style="zoom:40%;" class="center" />
+  <figcaption>Fig. 9: Comparison of variants of residual layers [7].</figcaption>
+</figure>
+
+<h2 id="instance-segmentation">Instance segmentation</h2>
+<div style="text-align: justify">
+While semantic segmentation tries to solve the task of predicting for each input pixel the associated semantic class, the goal of instance segmentation can be divided in two subgoals: 1) Detect all defined objects 2) Correctly segment each of the instances.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/instance_segmentation.png" alt="non_bottleneck_1d" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 10: Difference between semantic and instance segmentation [8].</figcaption>
+</figure>
+
+<h3 id="mask-r-cnn">Mask R-CNN</h3>
+<div style="text-align: justify">
+Mask R-CNN [9] builds upon the work of Faster R-CNN [10], which gets therefore briefly summarized first. Before the time of Faster R-CNN region proposals were created by algorithms like selective search. For each of the candidate object locations the relevant features got pooled from the feature map, which were normally generated by CNN encoders. This features were then used for the following classification and bounding box regression step. The identification of region proposals with selective search is computationally expensive and therefore also time intensive. The key idea of Faster R-CNN is the introduction of a <b>Region Proposal Network</b> (RPN), which predicts objectness scores and bounds for each position of the feature map (see Fig. 9). As the feature map gets shared with the detection network, the region proposals add hardly additional computational cost. The RPN uses reference boxes/anchors to improve the region proposals. For each of the sliding-window locations the objectness score gets computed for three different aspect ratios and scales. For each object proposals of the RPN the <b>RoI pooling layer</b> extracts a fixed-length feature vector from the feature map, which is fed into a sequence of fully connected layers. To get a fixed size output from ROI pooling, the cropped feature map is divided into bins and from each bin the maximum or average value is taken. This process is called quantization. Finally the header network is splitted into two output layers: 1) Produces softmax probability over K object classes plus a background class, 2) Outputs refined bounding-box positions.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/faster_r-cnn.png" alt="faster_r-cnn" style="zoom:30%;" class="center" />
+  <img img="" src="/assets/semseg_img/faster_r-cnn2.png" alt="faster_r-cnn" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 9: Architecture of Faster R-CNN [10].</figcaption>
+</figure>
+
+<div style="text-align: justify">
+Mask R-CNN adds a third branch, that outputs K (number of classes) masks for each RoI (see Fig. 10). Therefore the identified small feature maps are fed into a FCN, which predicts the pixel-wise masks and in the end the final k-th mask is chosen based on the prediction of the classification branch. As this task requires preserved per-pixel spatial correspondence, the <b>RoIAlign</b> layer was introduced. In RoIPool, we loose information at two points: When we crop the feature map and just take the integer part and when the cropped part is divided into a grid with fixed size. RoIAlign uses therefore float numbers to crop the feature map and bilinear interpolation to compute the grid values to mitigate this information loss.
+
+Furthermore the authors showed, that additional branches for example human keypoint detection could be easily integrated and jointly trained.
+</div>
+<figure align="center">
+  <img img="" src="/assets/semseg_img/MaskRCNN.png" alt="faster_r-cnn" style="zoom:50%;" class="center" />
+  <figcaption>Fig. 10: Branches of Mask R-CNN [9].</figcaption>
+</figure>
+
+<h2 id="sources">Sources</h2>
+
+<p>[1]:  S. Nowozin and C. H. Lampert. Structured learning and prediction in computer vision. Foundations and Trends in Computer Graphics and Vision, 6:185–365, 2011</p>
+
+<p>[2]: Long, J., Shelhamer, E., Darrell, T.: Fully convolutional networks for semantic segmentation. In: CVPR., 2015</p>
+
+<p>[3]:  O. Ronneberger, P. Fischer, and T. Brox. U-net: Convolutional networks for biomedical image segmentation. In MICCAI, pages 234–241. Springer, 2015</p>
+
+<p>[4]: F. Yu and V. Koltun. Multi-scale context aggregation by dilated convolutions. In ICLR, 2016</p>
+
+<p>[5]: L. Chen, G. Papandreou, I. Kokkinos, K. Murphy, and A. L. Yuille. Deeplab: Semantic image segmentation with deep convolutional nets, atrous convolution, and fully connected crfs. arXiv:1606.00915, 2016</p>
+
+<p>[6]: Zhao, H., Shi, J., Qi, X., Wang, X., Jia, J.: Pyramid scene parsing network. In: CVPR, 2017</p>
+
+<p>[7]: Romera, E., Alvarez, J.M., Bergasa, L.M., Arroyo, R.: Erfnet: Efficient residual factorized convnet for real-time semantic segmentation. IEEE Transactions on Intelligent Transportation Systems, 2018</p>
+
+<p>[8]: M.Everingham, L. V. Gool, C. K. I. Williams, J. Winn, and A. Zisserman, The PASCAL visual object classes VOC dataset and challenge, 2009</p>
+
+<p>[9]:  K. He, G. Gkioxari, P. Dollar, and R. Girshick. Mask R-CNN. In ICCV, 2017</p>
+
+<p>[10]: S. Ren, K. He, R. Girshick, and J. Sun. Faster R-CNN: Towards real-time object detection with region proposal networks. In NIPS, 2015</p>
 
 </div>
 
 <div class="tags">
     
 </div>
+
+
+  
+
+                </div>
+                
+                <div class="column is-4-desktop is-12-tablet">
+                    <p class="title is-4">Latest Posts</p>
+
+<div class="columns is-multiline">
+    
+    <div class="column is-12">
+        <div class="card">
+    
+    <div class="card-image">
+        <img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png" alt="Dense predictions: Review of selected publications in semantic and instance segmentation">
+    </div>
+    
+    <div class="card-content">
+        <div class="content">
+            
+            <a class="title is-4" href="/review/2020/03/19/semseg.html">Dense predictions: Review of selected publications in semantic and instance segmentation</a>
+            
+            <p><h2 id="semantic-segmentation">Semantic Segmentation</h2>
+<div style="text-align: justify">
+Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post.
+</div>
+
+</p>
+        </div>
+        <div class="has-text-centered">
+            <a href="/review/2020/03/19/semseg.html" class="button is-primary">Read more</a>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">Published: Mar 19, 2020</p>
+    </footer>
+</div>
+    </div>
+    
+</div>
+
+
 
 
                 </div>
