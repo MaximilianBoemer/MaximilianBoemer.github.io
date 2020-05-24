@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paper review: Predicting Deeper into the Future of Semantic Segmentation - Jotter</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="shortcut icon" type="image/png"
+           href="/favicon.png" 
+    />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Paper review: Predicting Deeper into the Future of Semantic Segmentation | Jotter</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Paper review: Predicting Deeper into the Future of Semantic Segmentation" />
+<meta name="author" content="Maximilian Bömer" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Paper review - Predicting Deeper into the Future of Semantic Segmentation Introduction In robotics it is crucial to correctly interpret the agent’s environment for good decision making. Besides the semantics and geometry of a scene, it is important to understand the scene dynamics. The here analyzed paper Predicting Deeper into the Future of Semantic Segmentation [1] focuses on this task and generates segmentation maps for not yet seen video frames based on a given input sequence (see Fig. 1). This blog post discusses the contributions and critique of the limitations of the work described. Additionally the following questions are answered: How the authors worked to overcome or mitigate any limitations and how does the work fit in the wider body of literature? In the end the scientific methodology and experimental results are evaluated and an outlook on the potential use for autonomous driving is given." />
+<meta property="og:description" content="Paper review - Predicting Deeper into the Future of Semantic Segmentation Introduction In robotics it is crucial to correctly interpret the agent’s environment for good decision making. Besides the semantics and geometry of a scene, it is important to understand the scene dynamics. The here analyzed paper Predicting Deeper into the Future of Semantic Segmentation [1] focuses on this task and generates segmentation maps for not yet seen video frames based on a given input sequence (see Fig. 1). This blog post discusses the contributions and critique of the limitations of the work described. Additionally the following questions are answered: How the authors worked to overcome or mitigate any limitations and how does the work fit in the wider body of literature? In the end the scientific methodology and experimental results are evaluated and an outlook on the potential use for autonomous driving is given." />
+<link rel="canonical" href="http://localhost:4000/review/2020/05/24/predsem.html" />
+<meta property="og:url" content="http://localhost:4000/review/2020/05/24/predsem.html" />
+<meta property="og:site_name" content="Jotter" />
+<meta property="og:image" content="https://www.researchgate.net/profile/Jakob_Verbeek/publication/315514643/figure/fig2/AS:667791610871819@1536225335330/Given-the-semantic-segmentation-of-past-frames-obtained-by-a-state-of-the-art-model-our.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-24T00:02:44+02:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Paper review: Predicting Deeper into the Future of Semantic Segmentation","dateModified":"2020-05-24T00:02:44+02:00","datePublished":"2020-05-24T00:02:44+02:00","image":"https://www.researchgate.net/profile/Jakob_Verbeek/publication/315514643/figure/fig2/AS:667791610871819@1536225335330/Given-the-semantic-segmentation-of-past-frames-obtained-by-a-state-of-the-art-model-our.png","url":"http://localhost:4000/review/2020/05/24/predsem.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/review/2020/05/24/predsem.html"},"author":{"@type":"Person","name":"Maximilian Bömer"},"description":"Paper review - Predicting Deeper into the Future of Semantic Segmentation Introduction In robotics it is crucial to correctly interpret the agent’s environment for good decision making. Besides the semantics and geometry of a scene, it is important to understand the scene dynamics. The here analyzed paper Predicting Deeper into the Future of Semantic Segmentation [1] focuses on this task and generates segmentation maps for not yet seen video frames based on a given input sequence (see Fig. 1). This blog post discusses the contributions and critique of the limitations of the work described. Additionally the following questions are answered: How the authors worked to overcome or mitigate any limitations and how does the work fit in the wider body of literature? In the end the scientific methodology and experimental results are evaluated and an outlook on the potential use for autonomous driving is given.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- head scripts --></head>
+
+  <body>
+    
+<nav class="navbar is-primary" >
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item">
+                Jotter
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start">
+                <a href="/" class="navbar-item ">Home</a>
+                
+                
+                    
+                    <a href="/blog/" class="navbar-item ">Blog</a>
+                    
+                
+                    
+                    <a href="/about/" class="navbar-item ">About me</a>
+                    
+                
+                
+            </div>
+
+            <div class="navbar-end">
+                
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+    
+        <section class="hero  is-medium  is-bold is-primary"  style="background: url('/assets/predsem_img/houses.jpg') no-repeat center center; background-size: cover;" >
+    <div class="hero-body">
+        <div class="container">
+            <p class="title is-2">Paper review: Predicting Deeper into the Future of Semantic Segmentation</p>
+            <p class="subtitle is-3"></p>
+            
+        </div>
+    </div>
+</section>
+    
+    
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                
+                <div class="column is-8">
+                    
+                    
+                    
+                    <div class="content">
+
+    <p>Published: May 24, 2020 by Maximilian Bömer</p>
+
+    <h1 id="paper-review---predicting-deeper-into-the-future-of-semantic-segmentation">Paper review - Predicting Deeper into the Future of Semantic Segmentation</h1>
+
+<h4 id="introduction">Introduction</h4>
+
+<p>In robotics it is crucial to correctly interpret the agent’s environment for good decision making. Besides the semantics and geometry of a scene, it is important to understand the scene dynamics. The here analyzed paper <em>Predicting Deeper into the Future of Semantic Segmentation</em> [1] focuses on this task and generates segmentation maps for not yet seen video frames based on a given input sequence (see Fig. 1). This blog post discusses the contributions and critique of the limitations of the work described. Additionally the following questions are answered: How the authors worked to overcome or mitigate any limitations and how does the work fit in the wider body of literature? In the end the scientific methodology and experimental results are evaluated and an outlook on the potential use for autonomous driving is given.
+<!--more--></p>
+<figure align="center">
+  <img img="" src="/assets/predsem_img/title.PNG" alt="predsem_title" style="zoom:60%;" class="center" />
+  <figcaption>Fig. 1: Semantic-level scene dynamics to predict semantic segmentations of unobserved future frames given several past frames [1].</figcaption>
+</figure>
+
+<h4 id="main-contributions-of-paper">Main contributions of paper</h4>
+
+<h5 id="introduction-of-the-task-of-predicting-semantic-segmentation-maps-for-future-frames-in-a-video-sequence">Introduction of the task of predicting semantic segmentation maps for future frames in a video sequence</h5>
+
+<p>Previous works in video forecasting either focus on predicting raw RGB intensities [2] of future frames or avoid the high dimensional pixel space by focusing on semantic properties. For this different forms of abstractions like directly predicting frame transformations [3], visual representations [4] or feature point trajectories [5] are used. Pauline Luc et al. relax the problem by focusing on ”future high-level scene properties” and therefore introduce the new task of directly predicting semantic segmentation maps. The underlying idea is that the capacity of the model is better allocated by focusing on the dense semantic information of the scene, than on the RGB values, which are not required for many applications.</p>
+
+<h5 id="development-of-an-autoregressive-model-which-enables-stable-mid-term-predictions">Development of an autoregressive model, which enables stable mid-term predictions</h5>
+
+<p>For single-frame prediction a model is presented, which takes N semantic segmentation maps as input and directly predicts the segmentation for the next timestep t+1. The input and target maps get precomputed using a Dilation10 network [6]. It is shown that the models, which just use segmentations as inputs and targets outperform these, which additionally use or predict RGB values or just focus on the prediction of raw pixel intensities. The architecture of the described S2S model is a multi-scale network like in [2], with two spatial scales. It predicts a coarse global output for a downsampled input map and uses the upsampled output of the first module as well as the correct scaled input frames to refine this prediction in the second module. Instead of using the class values of the semantic segmentation maps as inputs and targets, the final softmax layer’s pre-activations are used as they have shown to contain more information [7] (see Fig. 2).</p>
+
+<figure align="center">
+  <img img="" src="/assets/predsem_img/architecture.PNG" alt="fcn_architecture" style="zoom:45%;" class="center" />
+  <img img="" src="/assets/predsem_img/batchVSautoregressive.PNG" alt="fcn_architecture" style="zoom:55%;" class="center" />
+  <figcaption>Fig. 2: Multi-scale architecture of the S2S model that predicts the semantic segmentation of the next frame given the segmentation maps of the NI previous frames. The autoregressive model (top right) shares parameters over time, in contrast to the batch model (bottom right); dependency links are colored accordingly. [1]</figcaption>
+</figure>
+
+<p>To predict more than one time step in the future Pauline Luc et al. propose an autoregressive model based on the described architecture (see Fig. 2). The predicted output for timestep t gets used as input in the next iteration and the next frames are predicted in an iterative manner. It is shown that this approach, which exploits the recurrent structure of the problem, outperforms the variant, which based on the input at t predicts a batch of all required future frames. For training the network, losses with different properties are evaluated:</p>
+
+<ul>
+  <li>L1-loss: Matches pixel/pre-activation predictions</li>
+  <li>Gradient difference loss (GDL): Matches regional differences (e.g. on contours)</li>
+  <li>Adversial loss based on EM distance: Allows different turns of events as they do not need to match the oracle but just require to fool the discriminator</li>
+  <li>Autoregressive fine-tuning: Backpropagation through time to account for error propagation in autoregressive setup</li>
+</ul>
+
+<p>It is shown that the best variant for mid-term prediction is trained with L1, GDL and autoregressive fine-tuning on the softmax pre-activations. The final model is able to outperform the two baselines (I) copying the input frame to output and II) a warped form of the input frame based on estimated optical flow) for short-term and mid-term predictions (up to 0.5 s). Long term predictions (up to 10 s) show much worse results than I).</p>
+
+<h4 id="classification-in-the-broader-spectrum-of-literature">Classification in the broader spectrum of literature</h4>
+
+<p>Predicting scene dynamics is a widely studied topic. As described in II-A) there are several ideas to reduce the complexity by concentrating on high-level scene properties instead of modeling the raw pixel intensities. Here we focus on two streams of research, which predict future scenes at a semantically meaningful level: Motion forecasting for objects and segmentations.</p>
+
+<h5 id="object-forecasting">Object forecasting</h5>
+
+<p>Approaches, especially in autonomous driving, mainly use a three step approach: Detection, tracking and motion forecasting. Tracking systems identify tracks of existing objects in physically meaningful 3D world coordinates, like birds eye view, by exploiting depth information with their sensor setup [8], or in the 2D image plane by using position and object scale [9]. Herefore often extended Kalman filters are used to update the non-linear motion models based on the past measurements, which use the results of the respective object detectors [8]. Based on the identified tracks, the future trajectories are then extrapolated. This can be done by using linear models, which use the motion model of the Kalman filter, behavioral models [10], interacting Gaussian processes [11] or LSTMs [12]. Instead of learning these modules independently, approaches like Fast and Furious [13] or IntentNet [14] try to directly exploit spatio-temporal 3D information, which enables endto-end learning and a better propagation of uncertainties.</p>
+
+<h5 id="segmentation-forecasting">Segmentation forecasting</h5>
+
+<p>The approach analysed in this report [1] falls within this research area, where the goal is not to focus on selected objects but moreover predicting the whole semantic evolution of the scene. This enables a more holistic form of visual scene understanding. Several publications build upon the here done ground work. P. Luc et al. [15] modify the problem statement in their follow up work by predicting future instance segmentations to overcome the problem that semantic segmentations do not account for individual objects. They realise their approach by predicting the highest level features of the used Mask R-CNN for future frames. These two works get fused in [16] by encoding instance and semantic segmentation information in a single representation using distance maps. Other ideas to improve the prediction of future semantic segmentations include jointly predicting scene parsing and optical flow for future frames [17]. Due to the synergy of both tasks this approach is able to reveal significant better results. Further improvements got achieved by using a bidirectional ConvLSTM, which helps to encode the temporal relation of the input frames [18]. An other extension is proposed in [19], where the authors try to capture epistemic and aleatoric uncertainty in the predicted segmentations by at the same time encouraging diversity in the predicted multi-modal futures. They introduce a new Bayesian inference framework, which goes beyond the often used log-likelihood estimate, which enforces models to predict the mean of possible scenarios.</p>
+
+<h4 id="discussion">Discussion</h4>
+
+<p>This section has the goal to critically discuss limitations of the presented work and show how the authors mitigated some of them. The focus here is to show, which properties are required to extract meaningful representations of visual scenes, which enable predictions of the future and build a strong basis for decision making, and if the presented model is able to capture them.</p>
+
+<h5 id="limitations-of-the-work">Limitations of the work</h5>
+
+<p>One of the key limitations of the proposed work is that the system is not explicitly aware of the 3D geometry of the scene as the here proposed input is a projection into 2D space. Furthermore no notion of instances is available. These restrictions have direct impact on the performance and can be seen as reason for the reported poor performance of the model, when handling occlusions. Another weakness is the inability to deal with long term dependencies. The cause for this can be found in the architecture as the model takes four input frames and is therefore limited exploiting past information. Furthermore no pass-through of hidden information like in recurrent networks is possible. The inability to predict multi-modal futures for constant inputs and estimating the uncertainty of events is another restriction. This could have been mitigated by using the presented adversial loss during training and choosing a sampling scheme like in Bayesian inference or using a GAN or VAE like model to get a meaningful probability distribution. The performance of the prediction is also constrained as no ground truth data is available and the targets propagate the errors of the preceding segmentation network.</p>
+
+<h5 id="mitigated-limitations">Mitigated limitations</h5>
+
+<p>The use of the semantic segmentation model as oracle reduces on the other hand the dependency on costly dense video annotations, which makes it easy to scale the approach to large datasets. Another mitigated limitation is the extension of the task from forecasting trajectories of selected objects to semantic segmentation, which seems to be a more complete form of visual scene understanding. Additionally the autoregressive architecture enables an unlimited view into the future as the model can theoretically predict scenes of arbitrary length.</p>
+
+<h5 id="evaluation-of-the-scientific-methodology-and-experimental-results">Evaluation of the scientific methodology and experimental results</h5>
+
+<p>The paper impresses by its constant bottom up approach, where initially several options are presented, then compared and in the end a comprehensible decision is made. Examples are the comparisons of the different model architectures X2X, XS2X, XS2S, XS2XS and S2S as well as the decision for the autoregressive and against the batch approach to predict semantic segmentation maps for multiple future time steps. Even though the prediction of semantic segmentation maps was a novel task at the time of publication, it would be interesting to see how other video forecasting approaches like [2] would have performed in comparison to the presented X2X models. On a side note it is nice to see that the used models were published for reproducibility, unfortunately without the training code. The presented results show limitations regarding accuracy and the inability to predict multi-modal futures as described in IVB, which can be seen in particular in the averaged predictions for long-term scenarios (see Fig. 3).</p>
+
+<figure align="center">
+  <img img="" src="/assets/predsem_img/eval.PNG" alt="fcn_architecture" style="zoom:60%;" class="center" />
+  <figcaption>Fig. 3: Last input segmentation, and ground truth segmentations at 1, 4, 7, and 10 seconds into the future (top row), and corresponding predictions of the autoregressive S2S model trained with fine-tuning (bottom row) [1].</figcaption>
+</figure>
+
+<h4 id="conclusion-and-outlook-on-application-in-autonomous-driving">Conclusion and outlook on application in autonomous driving</h4>
+
+<p>I personally enjoyed reading the paper as well as seeing the development of the idea in the follow up works towards a more holistic form of visual scene understanding. It appears interesting to me how the presented approach can be scaled to be robust for various scenes and edge cases by being simultaneously real time capable. On the other hand, I am curious to see how it will be possible to incorporate 3D geometric information, long term temporal relationships and an awareness of uncertainty for the multi-modal future and how these representations can be leveraged in real life robotic applications.</p>
+
+<p>Wayve demonstrated in their published work <em>Probabilistic Future Prediction for Video Scene Understanding</em> [20], that learning temporal representations improve their driving policy for their reinforcement learning based end-to-end approach. Here I focus on the aforementioned addressed limitations, and how they are tried to be mitigated in there paper:</p>
+
+<ul>
+  <li><strong>Geometry and instance awareness:</strong> The additional auxiliary task of depth estimation introduces information about the 3D geometry of the scene. Limitations, which could not have been mitigated are in my opinion that the system still works with a 2D projection of the scene and also no explicit knowledge of instances is available.</li>
+  <li><strong>Long term dependencies:</strong> The use of the spatio-temporal module, which uses 3D convolutions to encode temporal, spatial and global context, seems to be a more sophisticated choice than the in of P. Luc et al. used approach of 2D convolutions for stacked input frames. Still the framework has limitations to make use of long term relationships as the number of input frames is fixed and no pass-through of information possible. The temporal encoding gets additionally enforced by the auxiliary task of flow estimation in the perception module.</li>
+  <li><strong>Multi-modal futures:</strong> Sampling future predictions from a distribution, which is conditioned on the past context and trained by minimizing the distance to the future distribution of observed sequences, shows visually convincing and plausible results. This mitigates the key limitation of the approach presented by P. Luc et al., which was not able to capture any form of multimodality and averaged possible futures.</li>
+  <li><strong>Estimation of uncertainties:</strong> Another extension is the ability to estimate uncertainties about the predicted future scenes.</li>
+  <li><strong>Limitation of performance caused by use of precomputed semantic segmentation maps:</strong> In contrast to P. Luc et al. the here presented framework is using raw RGB images as input and is therefore just depending on the precomputed semantic segmentation for the training targets, which decreases the influence of potential error propagation.</li>
+  <li><strong>Scalability and real-time capability:</strong> The here proposed work also shows that the idea of predicting future semantic segmentation maps can be scaled by at the same time being real-time capable and that the learned representations are able to improve real-world driving policies.</li>
+</ul>
+
+<h4 id="references">References</h4>
+
+<p>[1] N. Neverova, P. Luc, C. Couprie, J. J. Verbeek, and Y. LeCun, “Predicting deeper into the future of semantic segmentation,” CoRR, vol. abs/1703.07684, 2017.</p>
+
+<p>[2] M. Mathieu, C. Couprie, and Y. LeCun, “Deep multi-scale video prediction beyond mean square error,” 2015.</p>
+
+<p>[3] C. Finn, I. Goodfellow, and S. Levine, “Unsupervised learning for physical interaction through video prediction,” 2016.</p>
+
+<p>[4] C. Vondrick, H. Pirsiavash, and A. Torralba, “Anticipating visual representations from unlabeled video,” in 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 98–106, June 2016.</p>
+
+<p>[5] J. Walker, C. Doersch, A. Gupta, and M. Hebert, “An uncertain future: Forecasting from static images using variational autoencoders,” CoRR, vol. abs/1606.07873, 2016.</p>
+
+<p>[6] F. Yu and V. Koltun, “Multi-scale context aggregation by dilated convolutions,” 2015.</p>
+
+<p>[7] L. J. Ba and R. Caruana, “Do deep nets really need to be deep?,” CoRR, vol. abs/1312.6184, 2013.</p>
+
+<p>[8] A. Ess, K. Schindler, B. Leibe, and L. V. Gool, “Object detection and tracking for autonomous navigation in dynamic environments,” The International Journal of Robotics Research, vol. 29, pp. 1707 – 1725, 2010.</p>
+
+<p>[9] L. Zhang, Y. Li, and R. Nevatia, “Global data association for multiobject tracking using network flows,” 06 2008.</p>
+
+<p>[10] K. Yamaguchi, A. C. Berg, L. E. Ortiz, and T. L. Berg, “Who are you with and where are you going?,” in CVPR 2011, pp. 1345–1352, June 2011.</p>
+
+<p>[11] P. Trautman, J. Ma, R. M. Murray, and A. Krause, “Robot navigation in dense human crowds: Statistical models and experimental studies of human–robot cooperation,” The International Journal of Robotics Research, vol. 34, pp. 335 – 356, 2015.</p>
+
+<p>[12] A. Alahi, K. Goel, V. Ramanathan, A. Robicquet, L. Fei-Fei, and S. Savarese, “Social lstm: Human trajectory prediction in crowded spaces,” in 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 961–971, June 2016.</p>
+
+<p>[13] W. Luo, B. Yang, and R. Urtasun, “Fast and furious: Real time endto-end 3d detection, tracking and motion forecasting with a single convolutional net,” in 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, pp. 3569–3577, June 2018.</p>
+
+<p>[14] S. Casas, W. Luo, and R. Urtasun, “Intentnet: Learning to predict intention from raw sensor data,” in Proceedings of The 2nd Conference on Robot Learning (A. Billard, A. Dragan, J. Peters, and J. Morimoto, eds.), vol. 87 of Proceedings of Machine Learning Research, pp. 947– 956, PMLR, 29–31 Oct 2018.</p>
+
+<p>[15] P. Luc, C. Couprie, Y. LeCun, and J. Verbeek, “Predicting future instance segmentations by forecasting convolutional features,” CoRR, vol. abs/1803.11496, 2018.</p>
+
+<p>[16] C. Couprie, P. Luc, and J. Verbeek, “Joint Future Semantic and Instance Segmentation Prediction,” in ECCV Workshop on Anticipating Human Behavior, vol. 11131 of Lecture Notes in Computer Science, (Munich, Germany), pp. 154–168, Springer, Sept. 2018.</p>
+
+<p>[17] X. Jin, H. Xiao, X. Shen, J. Yang, Z. Lin, Y. Chen, Z. Jie, J. Feng, and S. Yan, “Predicting scene parsing and motion dynamics in the future,” 2017.</p>
+
+<p>[18] S. S. Nabavi, M. Rochan, and Y. Wang, “Future semantic segmentation with convolutional LSTM,” CoRR, vol. abs/1807.07946, 2018.</p>
+
+<p>[19] A. Bhattacharyya, M. Fritz, and B. Schiele, “Bayesian prediction of future street scenes using synthetic likelihoods,” CoRR, vol. abs/1810.00746, 2018.</p>
+
+<p>[20] A. Hu, F. Cotter, N. Mohan, C. Gurau, and A. Kendall, “Probabilistic future prediction for video scene understanding,” arXiv:2003.06409, 2020.</p>
+
+</div>
+
+<div class="tags">
+    
+</div>
+
+
+  
+
+                </div>
+                
+                <div class="column is-4-desktop is-12-tablet">
+                    <p class="title is-4">Latest Posts</p>
+
+<div class="columns is-multiline">
+    
+    <div class="column is-12">
+        <div class="card">
+    
+    <div class="card-image">
+        <img src="https://www.researchgate.net/profile/Jakob_Verbeek/publication/315514643/figure/fig2/AS:667791610871819@1536225335330/Given-the-semantic-segmentation-of-past-frames-obtained-by-a-state-of-the-art-model-our.png" alt="Paper review: Predicting Deeper into the Future of Semantic Segmentation">
+    </div>
+    
+    <div class="card-content">
+        <div class="content">
+            
+            <a class="title is-4" href="/review/2020/05/24/predsem.html">Paper review: Predicting Deeper into the Future of Semantic Segmentation</a>
+            
+            <p><h1 id="paper-review---predicting-deeper-into-the-future-of-semantic-segmentation">Paper review - Predicting Deeper into the Future of Semantic Segmentation</h1>
+
+<h4 id="introduction">Introduction</h4>
+
+<p>In robotics it is crucial to correctly interpret the agent’s environment for good decision making. Besides the semantics and geometry of a scene, it is important to understand the scene dynamics. The here analyzed paper <em>Predicting Deeper into the Future of Semantic Segmentation</em> [1] focuses on this task and generates segmentation maps for not yet seen video frames based on a given input sequence (see Fig. 1). This blog post discusses the contributions and critique of the limitations of the work described. Additionally the following questions are answered: How the authors worked to overcome or mitigate any limitations and how does the work fit in the wider body of literature? In the end the scientific methodology and experimental results are evaluated and an outlook on the potential use for autonomous driving is given.</p>
+
+</p>
+        </div>
+        <div class="has-text-centered">
+            <a href="/review/2020/05/24/predsem.html" class="button is-primary">Read more</a>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">Published: May 24, 2020</p>
+    </footer>
+</div>
+    </div>
+    
+    <div class="column is-12">
+        <div class="card">
+    
+    <div class="card-image">
+        <img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/tuebingen00.png" alt="Dense predictions: Review of selected publications in semantic and instance segmentation">
+    </div>
+    
+    <div class="card-content">
+        <div class="content">
+            
+            <a class="title is-4" href="/review/2020/03/19/semseg.html">Dense predictions: Review of selected publications in semantic and instance segmentation</a>
+            
+            <p><h2 id="semantic-segmentation">Semantic Segmentation</h2>
+<div style="text-align: justify">
+Semantic segmentation is one of the core problems of computer vision. It describes the task of associating each pixel of a input image with a semantic class and can be applied for various problems, where visual scene understanding is important. I had my first contact with semantic segmentation in 2017, when I started my master thesis, in which I developed a system to detect and classify road damages and obstacles based on dash cam images. I used semantic segmentation to extract the street surface and then identify anomalies with classical computer vision approaches. Later I applied the technique in both image anonymization and scene parsing for autonomous driving and also worked on a project for video object segmentation. The different tasks had different requirements and it is always a challenge to balance computational efficiency and accuracy. This post tries to give an by far not complete overview about the field and explain some of the key ideas. Additionally an outlook on instance segmentation is given. Interesting applications to other forms of data like point clouds or videos are planned for an upcoming blog post.
+</div>
+
+</p>
+        </div>
+        <div class="has-text-centered">
+            <a href="/review/2020/03/19/semseg.html" class="button is-primary">Read more</a>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">Published: Mar 19, 2020</p>
+    </footer>
+</div>
+    </div>
+    
+</div>
+
+
+
+
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+        <footer class="footer">
+    <div class="container">
+        
+        
+
+        <div class="content is-small has-text-centered">
+            <p class="">Theme built by <a href="https://www.csrhymes.com">C.S. Rhymes</a></p>
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/assets/js/app.js" type="text/javascript"></script><!-- footer scripts --></body>
+</html>
+
